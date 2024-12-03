@@ -1,6 +1,5 @@
 "use client";
 
-import { isAuthEnabled } from "@/lib/client-auth";
 import { Download, Send } from "@mui/icons-material";
 import {
   Alert,
@@ -18,7 +17,6 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 // Types
@@ -84,13 +82,6 @@ function generateCompanyName(): string {
 const DEAL_STATES = ["open", "closed", "lost"];
 
 export default function BulkDealGenerator() {
-  const authEnabled = isAuthEnabled();
-
-  let session = null;
-  if (authEnabled) {
-    session = useSession();
-  }
-
   const [minValue, setMinValue] = useState<number>(5000);
   const [maxValue, setMaxValue] = useState<number>(100000);
   const [numDeals, setNumDeals] = useState<number>(5);
@@ -321,16 +312,9 @@ export default function BulkDealGenerator() {
               color="primary"
               startIcon={<Send />}
               onClick={createDeals}
-              disabled={
-                generatedDeals.length === 0 ||
-                loading ||
-                (authEnabled && session.status === "unauthenticated")
-              }
+              disabled={generatedDeals.length === 0 || loading}
             >
-              Submit Deals{" "}
-              {authEnabled &&
-                session.status === "unauthenticated" &&
-                "(Login required)"}
+              Submit Deals
             </Button>
           </Box>
 
