@@ -1,13 +1,12 @@
 import * as React from "react";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Metadata } from "next";
 import { Viewport } from "next/types";
 import { siteConfig } from "@/config/site";
 import SiteHeader from "@/components/SiteHeader";
-import { CustomThemeProvider } from "@/contexts/ThemeContext";
-import FullstoryProvider from "@/contexts/Fullstory";
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import { Providers } from "@/contexts/Providers";
+import { isAuthEnabled } from "@/lib/auth";
 
 const iconUrl = "/favicon.ico";
 
@@ -33,26 +32,28 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-interface RootLayoutProps {
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}
+}) {
+  const authEnabled = isAuthEnabled();
 
-export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <CustomThemeProvider>
-            <FullstoryProvider>
-              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-              <CssBaseline />
-              <SiteHeader />
-              <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
-                {props.children}
-              </Container>
-            </FullstoryProvider>
-          </CustomThemeProvider>
-        </AppRouterCacheProvider>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="auth-enabled" content={authEnabled ? "true" : "false"} />
+      </head>
+      <body suppressHydrationWarning>
+        <Providers>
+          <CssBaseline />
+          <SiteHeader />
+          <Box
+            sx={{ py: { xs: 2, md: 4 }, px: { xs: 2, md: 4, lg: 8, xl: 12 } }}
+          >
+            {children}
+          </Box>
+        </Providers>
       </body>
     </html>
   );

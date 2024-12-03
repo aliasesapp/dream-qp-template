@@ -1,8 +1,6 @@
 "use client";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { siteConfig } from "@/config/site";
-import { LinkedIn, X } from "@mui/icons-material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
@@ -15,9 +13,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import NextLink from "next/link";
 import * as React from "react";
 import { LogoIcon } from "./Icons";
+import { UserMenu } from "./UserMenu";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -84,22 +82,7 @@ export default function SiteHeader() {
               alignItems: "center",
             }}
           >
-            <IconButton
-              color="secondary"
-              size="small"
-              component={NextLink}
-              href={siteConfig.links.linkedin}
-            >
-              <LinkedIn />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              size="small"
-              component={NextLink}
-              href={siteConfig.links.twitter}
-            >
-              <X />
-            </IconButton>
+            <UserMenu />
             <ThemeToggle />
           </Box>
           <Box sx={{ display: "none" }}>
