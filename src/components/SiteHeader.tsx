@@ -16,6 +16,8 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { LogoIcon } from "./Icons";
 import { UserMenu } from "./UserMenu";
+import { siteConfig } from "@/config/site";
+import { Link } from "@mui/material";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -66,14 +68,18 @@ export default function SiteHeader() {
             <Box sx={{ width: 154 }}>
               <LogoIcon />
             </Box>
-            <Typography
-              variant="body2"
-              sx={{ marginBottom: 0.75 }}
-              // hide on mobile
-              display={{ xs: "none", md: "block" }}
-            >
-              solution by Dream
-            </Typography>
+            {siteConfig && (
+              <Link
+                href={siteConfig.links.dream}
+                variant="body2"
+                sx={{ marginBottom: 0.75, color: "white" }}
+                // hide on mobile
+                display={{ xs: "none", md: "block" }}
+                target="_blank"
+              >
+                {siteConfig.mainNav[0].title}
+              </Link>
+            )}
           </Box>
           <Box
             sx={{
