@@ -13,13 +13,13 @@ export const getTheme = (mode: 'light' | 'dark'): ThemeOptions => ({
     mode,
     ...(mode === 'light'
       ? {
-          // Light mode palette
           primary: {
             main: '#0E4430',
             contrastText: '#FFFFFF',
           },
           secondary: {
             main: '#9CF27D',
+            contrastText: '#050A1A',
           },
           background: {
             default: '#F6F8FA',
@@ -31,12 +31,13 @@ export const getTheme = (mode: 'light' | 'dark'): ThemeOptions => ({
           },
         }
       : {
-          // Dark mode palette
           primary: {
             main: '#0E4430',
+            contrastText: '#FFFFFF',
           },
           secondary: {
             main: '#9CF27D',
+            contrastText: '#050A1A',
           },
           background: {
             default: '#091612',
@@ -46,7 +47,6 @@ export const getTheme = (mode: 'light' | 'dark'): ThemeOptions => ({
             primary: '#FFFFFF',
             secondary: '#7EB4BF',
           },
-          divider: 'rgb(25, 68, 92)',
         }),
   },
   typography: {
@@ -81,6 +81,22 @@ export const getTheme = (mode: 'light' | 'dark'): ThemeOptions => ({
         root: {
           textTransform: 'none',
           boxShadow: 'none',
+        },
+        contained: {
+          '&.MuiButton-containedPrimary': {
+            color: '#FFFFFF',
+          },
+          '&.MuiButton-containedSecondary': {
+            color: '#050A1A',
+          },
+        },
+        outlined: {
+          '&.MuiButton-outlinedPrimary': {
+            color: mode === 'light' ? '#0E4430' : '#FFFFFF',
+          },
+          '&.MuiButton-outlinedSecondary': {
+            color: mode === 'light' ? '#050A1A' : '#9CF27D',
+          },
         },
       },
     },

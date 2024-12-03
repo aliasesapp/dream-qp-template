@@ -26,10 +26,12 @@ export const CustomThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     if (storedMode) {
       setMode(storedMode);
     } else {
-      const prefersDark = window.matchMedia(
+      // Check OS for default theme
+      /* const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
-      setMode(prefersDark ? "dark" : "light");
+      setMode(prefersDark ? "dark" : "light"); */
+      setMode("light");
     }
   }, []);
 

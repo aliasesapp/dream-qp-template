@@ -1,13 +1,13 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Dream App",
+  name: "QuotaPath | Dream App",
   description:
-    "dream.aliases.co - If you can type, you can build it.",
+    "askdream.ai - If you can type, you can build it.",
   mainNav: [
     {
-      title: "from Aliases",
-      href: "https://aliases.co",
+      title: "created with Dream",
+      href: "https://askdream.ai",
     },
   ],
   links: {
